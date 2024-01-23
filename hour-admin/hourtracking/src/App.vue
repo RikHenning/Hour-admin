@@ -1,21 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <Employee msg="EmployeePage"></Employee>
+
+  
+<div class="container">
+  <Header msg="HeaderMsg"/>
+  <TimeTable msg="TimeTableMsg"/>
+</div>
   
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Employee from './components/Employee.vue'
+import Header from './components/Header.vue';
+import TimeTable from './components/TimeTable.vue';
 
 
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    Employee,
+    Header,
+    TimeTable,
 }
 }
 </script>
