@@ -1,14 +1,8 @@
 <template>
-    <div>
-        <!-- This will be the header!
-        <router-link to="./views/HomePage.vue">Go to Home page!</router-link>
-        <router-link to="./views/Employee.vue">Go to Employee page!</router-link>
-        <router-link to="./views/Invoicing.vue">Go to Invoicing page!</router-link>
-        <router-link to="./views/Planning.vue">Go to Planning page!</router-link> -->
-    </div>
+  <img src="/BackgroundPanda.jpeg" alt="Panda" />
     <fwb-navbar>
       <template #logo>
-      <fwb-navbar-logo alt="Fluffy Panda" image-url="#" link="#">
+      <fwb-navbar-logo alt="Fluffy Panda" image-url="../public/Images/BackgroundPanda.jpeg" link="../pubilc/Images/BackgroundPanda.jpeg">
         Panda Movers!!
       </fwb-navbar-logo>
     </template>

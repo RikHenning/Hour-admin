@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Invoicing from '../views/Invoicing'
+import InvoicingPage from '../views/Invoicing'
 
 const routes = [
     {
         path: '/invoicing',
         name: 'InvoicingPage',
-        component: Invoicing
+        component: InvoicingPage
     }
 ]
 
