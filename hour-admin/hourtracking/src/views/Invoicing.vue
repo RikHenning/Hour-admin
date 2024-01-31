@@ -4,7 +4,7 @@
     <div class="container">
       <HeaderMsg msg="Hello Panda Movers!"/>
       <TimeTable msg="TimeTableMsg"/>
-      <h1>Invoicing page!</h1>
+      <h1>Welcome to the Invoicing page!</h1>
     </div>
       
     </template>
