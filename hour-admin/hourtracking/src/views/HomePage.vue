@@ -5,7 +5,7 @@
       <TimeTable msg="TimeTableMsg"/>
       
     </div>
-    <h1>Welcome to the Home page!</h1>
+    <h1 v-if="showWelcome">Welcome to the Home page!</h1>
   </div>
 </template>
 
@@ -21,7 +21,12 @@ export default {
   components: {
     HeaderMsg,
     TimeTable,
-  }
+  },
+  data() {
+    return {
+      showWelcome: true, 
+    };
+  },
 }
 </script>
 
@@ -37,5 +42,6 @@ export default {
 
 .container h1 {
   display: block;
+  z-index: 1;
 }
 </style>
