@@ -1,15 +1,25 @@
 import { createRouter, createWebHistory } from "vue-router";
-import InvoicingPage from '../views/Invoicing'
+import InvoicingPage from '../views/InvoicingPage'
 import HomePage from '../views/HomePage'
 import EmployeePage from '../views/Employee'
-import PlanningPage from '../views/Planning'
+// import PlanningPage from '../views/Planning'
 
 const routes = [
-    {
-        path: '/Invoicing',
+    // {
+    //     path: '/',
+    //     redirect: '/invoicingPage' // Redirect to your component
+    //   },
+      {
+        path: '/invoicingPage',
         name: 'InvoicingPage',
         component: InvoicingPage
-    },
+      },
+   
+    // {
+    //     path: '/InvoicingPage',
+    //     name: 'InvoicingPage',
+    //     component: InvoicingPage
+    // },
     {
         path: '/HomePage',
         name: 'HomePage',
@@ -20,11 +30,11 @@ const routes = [
         name: 'EmployeePage',
         component: EmployeePage
     },
-    {
-        path: '/Planning',
-        name: 'PlanningPage',
-        component: PlanningPage
-    }
+    // {
+    //     path: '/Planning',
+    //     name: 'PlanningPage',
+    //     component: PlanningPage
+    // }
 ]
 
 const router = createRouter({

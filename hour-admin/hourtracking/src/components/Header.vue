@@ -14,7 +14,7 @@
         <fwb-navbar-link link="./views/Employee.vue">
           Employee Page 
         </fwb-navbar-link>
-        <fwb-navbar-link link="./views/Invoicing.vue">
+        <fwb-navbar-link link="./InvoicingPage">
           Invoicing Page
         </fwb-navbar-link>
         <fwb-navbar-link link="./views/Planning.vue">
