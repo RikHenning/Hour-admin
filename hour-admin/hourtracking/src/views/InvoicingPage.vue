@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Welcome to MyComponent!</h1>
-    <p>This is a Vue component.</p>
+    <h1>Welcome to Panda Movers!</h1>
+    <p>This is the Invoice Page.</p>
   </div>
 </template>
 

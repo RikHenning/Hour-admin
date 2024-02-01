@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import InvoicingPage from '../views/InvoicingPage'
 import HomePage from '../views/HomePage'
 import EmployeePage from '../views/Employee'
-// import PlanningPage from '../views/Planning'
+import PlanningPage from '../views/Planning'
 
 const routes = [
     // {
@@ -21,20 +21,20 @@ const routes = [
     //     component: InvoicingPage
     // },
     {
-        path: '/HomePage',
+        path: '/homePage',
         name: 'HomePage',
         component: HomePage
     },
     {
-        path: '/Employee',
+        path: '/employee',
         name: 'EmployeePage',
         component: EmployeePage
     },
-    // {
-    //     path: '/Planning',
-    //     name: 'PlanningPage',
-    //     component: PlanningPage
-    // }
+    {
+        path: '/planning',
+        name: 'PlanningPage',
+        component: PlanningPage
+    }
 ]
 
 const router = createRouter({

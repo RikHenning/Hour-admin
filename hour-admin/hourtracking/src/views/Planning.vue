@@ -1,13 +1,14 @@
 <template>
     <div class="container">
-      <HeaderMsg msg="Hello Panda Movers!"/>
+      <NavBar />
       <TimeTable msg="TimeTableMsg"/>
-      <h1>Welcome to the Planning page!</h1>
-    </div> 
+      <h1>Welcome to Panda Movers!</h1>
+      <p>This is the Planning Page.</p>
+    </div>
 </template>
     
 <script>
-import HeaderMsg from '../components/Header.vue';
+import NavBar from '../components/Header.vue';
 import TimeTable from '../components/TimeTable.vue';
 
 
@@ -15,7 +16,7 @@ import TimeTable from '../components/TimeTable.vue';
 export default {
     name: 'App',
     components: {
-    HeaderMsg,
+    NavBar,
     TimeTable,
     }
 }

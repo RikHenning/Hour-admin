@@ -1,68 +1,77 @@
 <template>
-  <img src="/BackgroundPanda.jpeg" alt="Panda" />
-    <fwb-navbar>
-      <template #logo>
-      <fwb-navbar-logo alt="Fluffy Panda" image-url="../public/Images/BackgroundPanda.jpeg" link="../pubilc/Images/BackgroundPanda.jpeg">
-        Panda Movers!!
-      </fwb-navbar-logo>
-    </template>
-    <template #default="{isShowMenu}">
-      <fwb-navbar-collapse :is-show-menu="isShowMenu">
-        <fwb-navbar-link is-active link="./views/HomePage.vue">
-          Home
-        </fwb-navbar-link>
-        <fwb-navbar-link link="./views/Employee.vue">
-          Employee Page 
-        </fwb-navbar-link>
-        <fwb-navbar-link link="./InvoicingPage">
-          Invoicing Page
-        </fwb-navbar-link>
-        <fwb-navbar-link link="./views/Planning.vue">
-          Planning Page
-        </fwb-navbar-link>
-      </fwb-navbar-collapse>
-    </template>
-    <template #menu-icon>
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-      </svg>
-    </template>
-  </fwb-navbar> 
+  <div class="container">
+    <div class="image-container">
+      <img src="/BackgroundPanda.jpeg" alt="Panda" />
+    </div>
+    <div class="router-links">
+      <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
+      <router-link to="/invoicingPage" class="router-link">Go to Invoice Page</router-link>
+      <router-link to="/employee" class="router-link">Go to Employee Page</router-link>
+      <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'HeaderMsg',
+    name: 'NavBar',
     props: {
     msg: String
   }
 };
 
-
-</script>
-
-<script setup>
-import {
-  FwbNavbar,
-  FwbNavbarCollapse,
-  FwbNavbarLink,
-  FwbNavbarLogo,
-} from 'flowbite-vue'
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f0f8ea; /* Pale green background color */
+  }
+
+  /* Image styles */
+  .image-container img {
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px; /* Optional: add rounded corners to the image */
+  }
+
+  /* Router link styles */
+  .router-links {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .router-link {
+    margin: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333; /* Text color */
+    background-color: #9acca4; /* Button background color */
+    border: 1px solid #72a482; /* Button border color */
+    border-radius: 5px; /* Optional: add rounded corners to the buttons */
+    transition: background-color 0.3s ease;
+  }
+
+  .router-link:hover {
+    background-color: #72a482; /* Hover background color */
+    color: #fff; /* Hover text color */
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .image-container img {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  }
 </style>
