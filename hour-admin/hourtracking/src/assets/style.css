@@ -1,21 +1,4 @@
-<template>
-  <div>
-    <NavBar />
-    <h1>Welcome to Panda Movers!</h1>
-    <p>This is the Invoice Page.</p>
-  </div>
-</template>
 
-<script>
-import NavBar from './components/Header.vue';
-
-export default {
-    name: "App",
-    components: { NavBar }
-};
-</script>
-
-<style>
 #app {
   font-family: 'Dancing Script', cursive;
   font-weight: 1800;
@@ -41,6 +24,7 @@ export default {
 
 .container h1 {
   display: block;
-  z-index: 1;
+  z-index: 1
 }
-</style>
+
+

@@ -11,6 +11,4 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Your component-specific styles go here */
-</style>
+

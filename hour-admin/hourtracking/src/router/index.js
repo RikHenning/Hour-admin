@@ -5,36 +5,26 @@ import EmployeePage from '../views/Employee'
 import PlanningPage from '../views/Planning'
 
 const routes = [
-    // {
-    //     path: '/',
-    //     redirect: '/invoicingPage' // Redirect to your component
-    //   },
-      {
-        path: '/invoicingPage',
-        name: 'InvoicingPage',
-        component: InvoicingPage
-      },
-   
-    // {
-    //     path: '/InvoicingPage',
-    //     name: 'InvoicingPage',
-    //     component: InvoicingPage
-    // },
-    {
-        path: '/homePage',
-        name: 'HomePage',
-        component: HomePage
-    },
-    {
-        path: '/employee',
-        name: 'EmployeePage',
-        component: EmployeePage
-    },
-    {
-        path: '/planning',
-        name: 'PlanningPage',
-        component: PlanningPage
-    }
+  {
+    path: '/homePage',
+    name: 'HomePage',
+    component: HomePage
+  },
+  {
+    path: '/invoicingPage',
+    name: 'InvoicingPage',
+    component: InvoicingPage
+  },
+  {
+      path: '/employee',
+      name: 'EmployeePage',
+      component: EmployeePage
+  },
+  {
+      path: '/planning',
+      name: 'PlanningPage',
+      component: PlanningPage
+  }
 ]
 
 const router = createRouter({

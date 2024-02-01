@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="image-container">
-      <img src="/BackgroundPanda.jpeg" alt="Panda" />
+      <img :src="backgroundImage" alt="Panda" @click="goToHomePage" class="clickable-image" />
     </div>
     <div class="router-links">
       <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
@@ -13,10 +13,22 @@
 </template>
 
 <script>
+import BackgroundPanda from '@/assets/BackgroundPanda.jpeg';
+
 export default {
     name: 'NavBar',
     props: {
     msg: String
+  },
+  data() {
+    return {
+      backgroundImage: BackgroundPanda,
+    };
+  },
+  methods: {
+    goToHomePage() {
+      this.$router.push('/homePage');
+    }
   }
 };
 
@@ -32,15 +44,17 @@ export default {
     background-color: #f0f8ea; /* Pale green background color */
   }
 
-  /* Image styles */
+  .clickable-image {
+    cursor: pointer;
+  }
+  
   .image-container img {
-    width: 100px; /* Adjust the width as needed */
+    width: 160px; /* Adjust the width as needed */
     height: auto;
     margin-right: 20px;
     border-radius: 10px; /* Optional: add rounded corners to the image */
   }
 
-  /* Router link styles */
   .router-links {
     display: flex;
     flex-wrap: wrap;
@@ -50,16 +64,16 @@ export default {
     margin: 10px;
     padding: 10px 20px;
     text-decoration: none;
-    color: #333; /* Text color */
-    background-color: #9acca4; /* Button background color */
-    border: 1px solid #72a482; /* Button border color */
-    border-radius: 5px; /* Optional: add rounded corners to the buttons */
+    color: #333; 
+    background-color: #9acca4;
+    border: 1px solid #72a482; 
+    border-radius: 5px; 
     transition: background-color 0.3s ease;
   }
 
   .router-link:hover {
-    background-color: #72a482; /* Hover background color */
-    color: #fff; /* Hover text color */
+    background-color: #72a482;
+    color: #fff; 
   }
 
   /* Responsive styles */
