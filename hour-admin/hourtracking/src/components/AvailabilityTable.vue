@@ -1,34 +1,18 @@
   <template>
     <div>
-      <div class="header-row">
-        <!-- Week display -->
-        <div class="week">Week {{number}}</div>
-  
-        <!-- Days display -->
-        <div class="days">
-          <div v-for="day in days" :key="day" class="day">
-            {{ day }}
-          </div>
-        </div>
-      </div>
-  
-      <!-- Two rows of divs -->
-      <div class="content-row">
-        <div class="time-section">
-          <!-- Total hours display -->
+      <div class="dayAvailability">
+        <div class="weekColumn">
+          <div class="week">Week</div>
           <div class="total-hours">
             Total Hours: {{ calculateTotalHours }}
           </div>
         </div>
   
         <!-- Additional divs with gaps -->
-        <div class="additional-div">
-          <label for="totalHours">Total Hours:</label>
-          <input type="number" v-model="totalHours" id="totalHours" />
-        </div>
+        
   
         <!-- Individual day details -->
-        <div v-for="day in days" :key="day" class="day-details">
+        <div v-for="day in days" :key="day" class="dayColumns">
           <div class="day">{{ day }}</div>
           <div class="time-section">
             <label>Start Time:</label>
@@ -41,9 +25,15 @@
   
       <!-- Additional divs with gaps -->
       <div class="gap"></div>
-      <div class="additional-div">
-        <label for="name">Name:</label>
-        <input type="text" v-model="name" id="name" />
+      <div class="employeeDetails">
+        <div class="totalHours">
+          <label for="totalHours">Total Hours:</label>
+          <input type="number" v-model="totalHours" id="totalHours" />
+        </div>
+        <label for="firstName">First Name:</label>
+        <input type="text" v-model="firstName" id="firstName" />
+        <label for="lastName">Last Name:</label>
+        <input type="text" v-model="lastName" id="lastName" />
       </div>
     </div>
   </template>
@@ -73,7 +63,7 @@
         updateWeek() {
         const date = new Date(this.selectedDate);
         const options = { weekday: "long" };
-        this.week = new Intl.DateTimeFormat("en-US", options).format(date);
+        this.week = new Intl.DateTimeFormat("en-UK", options).format(date);
       },
       calculateTotalHours() {
         let total = 0;
@@ -88,49 +78,55 @@
   };
   </script>
   
-  <style scoped>
-  .header-row,
-  .week {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #006400; /* Dark green border color */
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .days {
-    display: flex;
-  }
-  
-  .day {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .content-row {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .day-details {
-    flex: 1;
-    margin-left: 10px;
-  }
-  
-  
-  .row,
-  .day,
-  .time-section,
-  .total-hours,
-  .additional-div {
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .gap {
-    height: 10px;
-  }
-  </style>
-  
+ <style scoped>
+.dayAvailability {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.weekColumn,
+.dayColumns,
+.employeeDetails {
+  flex: 1;
+  border: 3px solid #006400; /* Dark green border color */
+  border-radius: 16px;
+  padding: 10px;
+  margin: 0 5px 10px 0; /* Adjust margin for spacing between divs */
+}
+
+.week {
+  text-align: center;
+}
+
+.day, .week {
+  text-align: center;
+  border-bottom: 3px solid #006400; /* Border between day and time-section */
+  padding-bottom: 10px; /* Add padding for spacing between the border and content */
+}
+
+.time-section {
+  font-size: small;
+  font-weight: bold; 
+}
+
+.total-hours {
+  font-size: medium;
+  font-weight: bold; 
+}
+
+.gap {
+  height: 10px;
+  flex: 1;
+  margin: 0 5px 10px 0; /* Adjust margin for spacing between divs */
+}
+
+.employeeDetails label,
+.employeeDetails input {
+  margin-bottom: 4px;
+}
+
+.employeeDetails label:nth-child(3),
+.employeeDetails input:nth-child(4) {
+  margin-top: 4px;
+}
+</style>
