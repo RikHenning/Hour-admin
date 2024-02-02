@@ -1,5 +1,5 @@
   <template>
-    <div>
+    <div class="createNewEmployee">
       <div class="dayAvailability">
         <div class="weekColumn">
           <div class="week">Week</div>
@@ -7,11 +7,6 @@
             Total Hours: {{ calculateTotalHours }}
           </div>
         </div>
-  
-        <!-- Additional divs with gaps -->
-        
-  
-        <!-- Individual day details -->
         <div v-for="day in days" :key="day" class="dayColumns">
           <div class="day">{{ day }}</div>
           <div class="time-section">
@@ -22,8 +17,6 @@
           </div>
         </div>
       </div>
-  
-      <!-- Additional divs with gaps -->
       <div class="gap"></div>
       <div class="employeeDetails">
         <div class="totalHours">
@@ -35,6 +28,7 @@
         <label for="lastName">Last Name:</label>
         <input type="text" v-model="lastName" id="lastName" />
       </div>
+      <button class='button-styling' type="submit">Create new Employee</button>
     </div>
   </template>
   

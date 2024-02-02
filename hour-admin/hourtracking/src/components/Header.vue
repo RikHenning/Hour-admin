@@ -38,7 +38,11 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-color: #f0f8ea; /* Pale green background color */
+    background-color: #f0f8ea;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
   }
 
   .clickable-image {
@@ -46,10 +50,10 @@ export default {
   }
   
   .image-container img {
-    width: 160px; /* Adjust the width as needed */
+    width: 160px;
     height: auto;
     margin-right: 20px;
-    border-radius: 10px; /* Optional: add rounded corners to the image */
+    border-radius: 10px; 
   }
 
   .router-links {

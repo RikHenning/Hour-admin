@@ -1,5 +1,8 @@
 
 #app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Dancing Script', cursive;
   font-weight: 1800;
   font-size: 1.8rem;
@@ -27,4 +30,13 @@
   z-index: 1
 }
 
-
+.button-styling {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 1800;
+  font-size: 1.8rem;
+  background-color: #b4c77b;
+  cursor: pointer;
+  width: 250px; 
+  height: 40px; 
+  margin: 10px; 
+}
