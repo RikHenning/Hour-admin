@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import InvoicingPage from '../views/InvoicingPage'
-import HomePage from '../views/HomePage'
-import EmployeePage from '../views/Employee'
-import PlanningPage from '../views/Planning'
+import InvoicingPage from '../views/InvoicingPage.vue'
+import HomePage from '../views/HomePage.vue'
+import EmployeePage from '../views/Employee.vue'
+import PlanningPage from '../views/Planning.vue'
 
 const routes = [
   {

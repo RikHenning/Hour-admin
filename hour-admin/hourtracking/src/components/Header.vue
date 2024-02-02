@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="image-container">
-      <img :src="backgroundImage" alt="Panda" @click="goToHomePage" class="clickable-image" />
+      <router-link to="/homePage">
+        <img :src="backgroundImage" alt="Panda" class="clickable-image" />
+      </router-link>
     </div>
     <div class="router-links">
       <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
@@ -25,11 +27,6 @@ export default {
       backgroundImage: BackgroundPanda,
     };
   },
-  methods: {
-    goToHomePage() {
-      this.$router.push('/homePage');
-    }
-  }
 };
 
 </script>

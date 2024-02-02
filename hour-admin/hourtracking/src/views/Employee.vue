@@ -1,23 +1,16 @@
 <template>
     <div class="container">
-      <NavBar />
-      <TimeTable msg="TimeTableMsg"/>
-      <h1>Welcome to Panda Movers!</h1>
-    <p>This is the Employee Page.</p>
-    </div>  
+        <h1>Welcome to Panda Movers!</h1>
+        <p>This is the Employee Page.</p>
+    </div> 
+    <AvailabilityTable />
 </template>
     
 <script>
-import NavBar from '../components/Header.vue';
-import TimeTable from '../components/TimeTable.vue';
-
-
+import AvailabilityTable from '@/components/AvailabilityTable.vue';
 
 export default {
-    name: 'App',
-    components: {
-    NavBar,
-    TimeTable,
-}
+    name: 'EmployeePage',
+    components: { AvailabilityTable }
 }
 </script>
