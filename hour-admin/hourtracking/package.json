@@ -14,6 +14,7 @@
     "vite": "^5.0.12",
     "vite-plugin-vue": "^0.0.1",
     "vue": "^3.2.13",
+    "vue-final-modal": "^4.5.3",
     "vue-router": "^4.0.13"
   },
   "devDependencies": {

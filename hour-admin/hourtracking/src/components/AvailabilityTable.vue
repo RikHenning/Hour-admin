@@ -3,8 +3,8 @@
       <div class="dayAvailability">
         <div class="weekColumn">
           <div class="week">Week</div>
-          <div class="total-hours">
-            Total Hours: {{ calculateTotalHours }}
+          <div class="empty">
+            
           </div>
         </div>
         <div v-for="day in days" :key="day" class="dayColumns">
@@ -21,56 +21,71 @@
       <div class="employeeDetails">
         <div class="totalHours">
           <label for="totalHours">Total Hours:</label>
-          <input type="number" v-model="totalHours" id="totalHours" />
+          <input type="number" v-model="totalHours" id="totalHours" required />
         </div>
         <label for="firstName">First Name:</label>
-        <input type="text" v-model="firstName" id="firstName" />
+        <input type="text" v-model="firstName" id="firstName" required />
         <label for="lastName">Last Name:</label>
-        <input type="text" v-model="lastName" id="lastName" />
+        <input type="text" v-model="lastName" id="lastName" required />
       </div>
-      <button class='button-styling' type="submit">Create new Employee</button>
+      <button class='button-styling' type="submit" @click="submitAndCloseModal">Create new Employee</button>
     </div>
   </template>
   
   <script>
-  export default {
-    name: 'availabilityTable',
-    data() {
-      return {
-        selectedDate: new Date().toISOString().substr(0, 10),
-        week: "",
-        days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        times: {
-          Mon: { start: "07:30", finish: "18:30" },
-          Tue: { start: "07:30", finish: "18:30" },
-          Wed: { start: "07:30", finish: "18:30" },
-          Thu: { start: "07:30", finish: "18:30" },
-          Fri: { start: "07:30", finish: "18:30" },
-          Sat: { start: "07:30", finish: "18:30" },
-          Sun: { start: "07:30", finish: "18:30" },
-        },
-        totalHours: 40,
-        name: "",
+export default {
+  name: 'availabilityTable',
+  data() {
+    return {
+      selectedDate: new Date().toISOString().substr(0, 10),
+      week: "",
+      days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      times: {
+        Mon: { start: "07:30", finish: "18:30" },
+        Tue: { start: "07:30", finish: "18:30" },
+        Wed: { start: "07:30", finish: "18:30" },
+        Thu: { start: "07:30", finish: "18:30" },
+        Fri: { start: "07:30", finish: "18:30" },
+        Sat: { start: "07:30", finish: "18:30" },
+        Sun: { start: "07:30", finish: "18:30" },
+      },
+      totalHours: 40,
+      firstName: "",
+      lastName: "",
+    };
+  },
+  methods: {
+    updateWeek() {
+      const date = new Date(this.selectedDate);
+      const options = { weekday: "long" };
+      this.week = new Intl.DateTimeFormat("en-UK", options).format(date);
+    },
+    submitAndCloseModal() {
+      // Create a unique ID using Date.now()
+      const id = Date.now();
+
+      // Create a string with all the required information
+      const employeeData = {
+        id,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        totalHours: this.totalHours,
+        times: { ...this.times }, // Copy times object to prevent reactivity issues
       };
+
+      // Convert the object to a JSON string
+      const employeeDataString = JSON.stringify(employeeData);
+
+      // Save the string to Local Storage
+      localStorage.setItem(`employee-${id}`, employeeDataString);
+
+      // Close the modal
+      this.$emit('close');
     },
-    methods: {
-        updateWeek() {
-        const date = new Date(this.selectedDate);
-        const options = { weekday: "long" };
-        this.week = new Intl.DateTimeFormat("en-UK", options).format(date);
-      },
-      calculateTotalHours() {
-        let total = 0;
-        for (const day in this.times) {
-          const start = new Date(`2000-01-01 ${this.times[day].start}`);
-          const finish = new Date(`2000-01-01 ${this.times[day].finish}`);
-          total += (finish - start) / (1000 * 60 * 60);
-        }
-        return total.toFixed(2);
-      },
-    },
-  };
-  </script>
+  },
+};
+</script>
+
   
  <style scoped>
 .dayAvailability {

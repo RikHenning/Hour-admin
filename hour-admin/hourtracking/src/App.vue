@@ -15,7 +15,10 @@ import { RouterView } from 'vue-router';
 
 export default {
   name: "App",
-  components: { NavBar, RouterView },
+  components: { 
+    NavBar, 
+    RouterView,
+  },
   data() {
     return {
       selectedView: false,
@@ -23,10 +26,8 @@ export default {
   },
   watch: {
     $route() {
-
       this.selectedView = true;
     },
   },
 };
 </script>
-
