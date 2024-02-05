@@ -1,0 +1,24 @@
+body{
+  background-color: black;
+  font-family: 'Aladin', cursive;
+  color: #26F7FD;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-image: url('halloween-23439_1280.png'), linear-gradient(to bottom right, black, orange);
+}
+
+button{
+btn-padding-y: 200px;
+btn-padding-x: 200px;
+}
+
+#exampleModal {
+
+ background-color: linear-gradient(to bottom right, black, orange);
+
+}
+
+.custom-bg-black {
+  background-color: black;
+}
