@@ -33,6 +33,10 @@
   </template>
   
   <script>
+import mitt from 'mitt'; 
+
+const emitter = mitt();
+
 export default {
   name: 'availabilityTable',
   data() {
@@ -55,32 +59,22 @@ export default {
     };
   },
   methods: {
-    updateWeek() {
-      const date = new Date(this.selectedDate);
-      const options = { weekday: "long" };
-      this.week = new Intl.DateTimeFormat("en-UK", options).format(date);
-    },
     submitAndCloseModal() {
-      // Create a unique ID using Date.now()
       const id = Date.now();
-
-      // Create a string with all the required information
       const employeeData = {
         id,
         firstName: this.firstName,
         lastName: this.lastName,
         totalHours: this.totalHours,
-        times: { ...this.times }, // Copy times object to prevent reactivity issues
+        times: { ...this.times },
       };
 
-      // Convert the object to a JSON string
       const employeeDataString = JSON.stringify(employeeData);
-
-      // Save the string to Local Storage
       localStorage.setItem(`employee-${id}`, employeeDataString);
-
-      // Close the modal
-      this.$emit('close');
+      
+      emitter.emit('employee-created', employeeData);
+      
+      emitter.emit('close');
     },
   },
 };

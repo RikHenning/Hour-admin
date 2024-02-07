@@ -1,15 +1,20 @@
 <template>
-  <div class="container">
-    <div class="image-container">
-      <router-link to="/homePage">
-        <img :src="backgroundImage" alt="Panda" class="clickable-image" />
-      </router-link>
+  <div>
+    <div class="container" ref="header">
+      <div class="image-container">
+        <router-link to="/homePage">
+          <img :src="backgroundImage" alt="Panda" class="clickable-image" />
+        </router-link>
+      </div>
+      <div class="router-links">
+        <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
+        <router-link to="/invoicingPage" class="router-link">Go to Invoice Page</router-link>
+        <router-link to="/employee" class="router-link">Go to Employee Page</router-link>
+        <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
+      </div>
     </div>
-    <div class="router-links">
-      <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
-      <router-link to="/invoicingPage" class="router-link">Go to Invoice Page</router-link>
-      <router-link to="/employee" class="router-link">Go to Employee Page</router-link>
-      <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
+    <div class="content" :style="{ paddingTop: headerHeight + 'px' }">
+      <!-- Your page content here -->
     </div>
   </div>
 </template>
@@ -18,75 +23,78 @@
 import BackgroundPanda from '@/assets/BackgroundPanda.jpeg';
 
 export default {
-    name: 'NavBar',
-    props: {
+  name: 'NavBar',
+  props: {
     msg: String
   },
   data() {
     return {
       backgroundImage: BackgroundPanda,
+      headerHeight: 0,
     };
   },
+  mounted() {
+    this.headerHeight = this.$refs.header.clientHeight;
+  },
 };
-
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f0f8ea;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.clickable-image {
+  cursor: pointer;
+}
+
+.image-container img {
+  width: 160px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.router-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.router-link {
+  margin: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  background-color: #9acca4;
+  border: 1px solid #72a482;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.router-link:hover {
+  background-color: #72a482;
+  color: #fff;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
   .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #f0f8ea;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%; 
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .clickable-image {
-    cursor: pointer;
-  }
-  
   .image-container img {
-    width: 160px;
-    height: auto;
-    margin-right: 20px;
-    border-radius: 10px; 
+    margin-right: 0;
+    margin-bottom: 10px;
   }
-
-  .router-links {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .router-link {
-    margin: 10px;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #333; 
-    background-color: #9acca4;
-    border: 1px solid #72a482; 
-    border-radius: 5px; 
-    transition: background-color 0.3s ease;
-  }
-
-  .router-link:hover {
-    background-color: #72a482;
-    color: #fff; 
-  }
-
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .image-container img {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-  }
+}
 </style>
