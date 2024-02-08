@@ -11,14 +11,12 @@
       <AvailabilityTable @close="closeModal" />
     </vue-final-modal>
 
-    <LocalStorageExample />
     <EmployeeList :employees="employees" />
   </div>
 </template>
 
 <script>
 import AvailabilityTable from '@/components/AvailabilityTable.vue';
-import LocalStorageExample from "@/components/LocalStorageExample.vue";
 import EmployeeList from "@/components/EmployeeList.vue";
 import mitt from 'mitt'; // Add this import statement
 
@@ -29,7 +27,6 @@ export default {
   name: 'EmployeePage',
   components: { 
     AvailabilityTable,
-    LocalStorageExample,
     EmployeeList,
   },
   data() {

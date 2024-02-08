@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container" ref="header">
+  <header class="nav-bar" ref="header">
+    <div class="container">
       <div class="image-container">
         <router-link to="/homePage">
           <img :src="backgroundImage" alt="Panda" class="clickable-image" />
@@ -13,10 +13,7 @@
         <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
       </div>
     </div>
-    <div class="content" :style="{ paddingTop: headerHeight + 'px' }">
-      <!-- Your page content here -->
-    </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -34,8 +31,30 @@ export default {
     };
   },
   mounted() {
-    this.headerHeight = this.$refs.header.clientHeight;
+  // Call setHeaderHeight when the component is mounted
+  this.setHeaderHeight();
+
+  // Add event listener for window resize
+  window.addEventListener('resize', this.handleResize);
+},
+
+beforeUnmount() {
+  // Remove event listener when the component is unmounted
+  window.removeEventListener('resize', this.handleResize);
+},
+
+methods: {
+  setHeaderHeight() {
+    // Calculate header height
+    this.$nextTick(() => {
+      this.headerHeight = this.$refs.header.clientHeight;
+    });
   },
+  handleResize() {
+    // Recalculate header height when window is resized
+    this.setHeaderHeight();
+  },
+},
 };
 </script>
 
@@ -47,10 +66,6 @@ export default {
   justify-content: space-between;
   padding: 20px;
   background-color: #f0f8ea;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
 }
 
 .clickable-image {
