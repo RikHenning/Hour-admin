@@ -1,8 +1,8 @@
 <template>
   <div>
-    <NavBar />
-    <RouterView v-if="selectedView" style="padding-top: headerHeight + 'px'"></RouterView>
-    <div v-else>
+    <NavBar @headerHeightUpdated="updateHeaderHeight"/>
+    <RouterView :style="{ paddingTop: headerHeight + 'px' }"></RouterView>
+    <div>
       <h1>Welcome to Panda Movers!</h1>
       <p>This is the default message.</p>
     </div>
@@ -39,10 +39,8 @@ export default {
     window.removeEventListener('resize', this.setHeaderHeight);
   },
   methods: {
-    setHeaderHeight() {
-      this.$nextTick(() => {
-        this.headerHeight = this.$refs.header.clientHeight;
-      });
+    updateHeaderHeight(height) {
+      this.headerHeight = height;
     },
   },
 };
@@ -55,5 +53,9 @@ export default {
   left: 0;
   width: 100%;
   z-index: 999;
+}
+
+.router-view {
+  transition: padding-top 0.6s ease;
 }
 </style>

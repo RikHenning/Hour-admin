@@ -1,6 +1,6 @@
 <template>
   <header class="nav-bar" ref="header">
-    <div class="container">
+    <div class="container" ref="container">
       <div class="image-container">
         <router-link to="/homePage">
           <img :src="backgroundImage" alt="Panda" class="clickable-image" />
@@ -15,6 +15,7 @@
     </div>
   </header>
 </template>
+
 
 <script>
 import BackgroundPanda from '@/assets/BackgroundPanda.jpeg';
@@ -31,30 +32,32 @@ export default {
     };
   },
   mounted() {
-  // Call setHeaderHeight when the component is mounted
-  this.setHeaderHeight();
+    this.setHeaderHeight();
+    window.addEventListener('resize', this.handleResize);
+  },
 
-  // Add event listener for window resize
-  window.addEventListener('resize', this.handleResize);
-},
+  beforeUnmount() {
+    // Remove event listener when the component is unmounted
+    window.removeEventListener('resize', this.handleResize);
+  },
 
-beforeUnmount() {
-  // Remove event listener when the component is unmounted
-  window.removeEventListener('resize', this.handleResize);
-},
-
-methods: {
+  methods: {
   setHeaderHeight() {
-    // Calculate header height
     this.$nextTick(() => {
-      this.headerHeight = this.$refs.header.clientHeight;
+      const headerHeight = this.$refs.header.clientHeight;
+      const containerPaddingTop = parseInt(window.getComputedStyle(this.$refs.container).paddingTop);
+      const containerPaddingBottom = parseInt(window.getComputedStyle(this.$refs.container).paddingBottom);
+      const routerLinksPaddingTop = parseInt(window.getComputedStyle(this.$refs.routerLinks).paddingTop);
+      const routerLinksPaddingBottom = parseInt(window.getComputedStyle(this.$refs.routerLinks).paddingBottom);
+      const totalHeight = headerHeight + containerPaddingTop + containerPaddingBottom + routerLinksPaddingTop + routerLinksPaddingBottom;
+      this.$emit('headerHeightUpdated', totalHeight);
     });
   },
   handleResize() {
-    // Recalculate header height when window is resized
     this.setHeaderHeight();
   },
-},
+}
+
 };
 </script>
 
