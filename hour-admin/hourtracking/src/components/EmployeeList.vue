@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'EmployeeList',
   data() {
     return {
       employees: [],
@@ -44,7 +45,7 @@ export default {
     handleStorageChange(event) {
       if (event.key && event.key.startsWith("employee-")) {
         this.loadEmployeesFromLocalStorage();
-        this.$emit('local-storage-updated');
+        // this.$emit('local-storage-updated');
       }
     },
   },

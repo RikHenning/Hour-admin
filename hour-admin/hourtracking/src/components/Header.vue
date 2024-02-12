@@ -1,18 +1,20 @@
 <template>
   <header class="nav-bar" ref="header">
-    <div class="container" ref="container">
-      <div class="image-container">
-        <router-link to="/homePage">
-          <img :src="backgroundImage" alt="Panda" class="clickable-image" />
-        </router-link>
+    <nav class="navbar">
+      <div class="nav headerContainer" ref="container">
+        <div class="nav-item image-container">
+          <router-link to="/homePage">
+            <img :src="backgroundImage" alt="Panda" class="nav-link clickable-image" />
+          </router-link>
+        </div>
+        <div class="nav-item router-links">
+          <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
+          <router-link to="/invoicingPage" class="router-link">Go to Invoice Page</router-link>
+          <router-link to="/employee" class="router-link">Go to Employee Page</router-link>
+          <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
+        </div>
       </div>
-      <div class="router-links">
-        <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
-        <router-link to="/invoicingPage" class="router-link">Go to Invoice Page</router-link>
-        <router-link to="/employee" class="router-link">Go to Employee Page</router-link>
-        <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
-      </div>
-    </div>
+    </nav>
   </header>
 </template>
 
@@ -28,41 +30,13 @@ export default {
   data() {
     return {
       backgroundImage: BackgroundPanda,
-      headerHeight: 0,
     };
-  },
-  mounted() {
-    this.setHeaderHeight();
-    window.addEventListener('resize', this.handleResize);
-  },
-
-  beforeUnmount() {
-    // Remove event listener when the component is unmounted
-    window.removeEventListener('resize', this.handleResize);
-  },
-
-  methods: {
-  setHeaderHeight() {
-    this.$nextTick(() => {
-      const headerHeight = this.$refs.header.clientHeight;
-      const containerPaddingTop = parseInt(window.getComputedStyle(this.$refs.container).paddingTop);
-      const containerPaddingBottom = parseInt(window.getComputedStyle(this.$refs.container).paddingBottom);
-      const routerLinksPaddingTop = parseInt(window.getComputedStyle(this.$refs.routerLinks).paddingTop);
-      const routerLinksPaddingBottom = parseInt(window.getComputedStyle(this.$refs.routerLinks).paddingBottom);
-      const totalHeight = headerHeight + containerPaddingTop + containerPaddingBottom + routerLinksPaddingTop + routerLinksPaddingBottom;
-      this.$emit('headerHeightUpdated', totalHeight);
-    });
-  },
-  handleResize() {
-    this.setHeaderHeight();
-  },
-}
-
+  }
 };
 </script>
 
 <style scoped>
-.container {
+.headerContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -105,7 +79,7 @@ export default {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .container {
+  .headerContainer {
     flex-direction: column;
     align-items: flex-start;
   }

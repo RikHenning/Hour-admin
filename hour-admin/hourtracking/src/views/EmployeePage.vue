@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example" class="container">
     <h1>Welcome to Panda Movers!</h1>
     <p>This is the Employee Page.</p>
 
@@ -18,10 +18,6 @@
 <script>
 import AvailabilityTable from '@/components/AvailabilityTable.vue';
 import EmployeeList from "@/components/EmployeeList.vue";
-import mitt from 'mitt'; // Add this import statement
-
-// Create Mitt event emitter instance
-const emitter = mitt();
 
 export default {
   name: 'EmployeePage',
@@ -80,15 +76,15 @@ export default {
   },
   created() {
   // Listen for the 'employee-created' event emitted by AvailabilityTable
-  emitter.on('employee-created', this.handleEmployeeCreated);
-  // Listen for the 'close' event emitted by AvailabilityTable to close the modal
-  emitter.on('close', this.closeModal);
-},
-beforeUnmount() {
-  // Remove event listeners to prevent memory leaks
-  emitter.off('employee-created', this.handleEmployeeCreated);
-  emitter.off('close', this.closeModal);
+  // this.$emit('employee-created', this.handleEmployeeCreated);
+  // // Listen for the 'close' event emitted by AvailabilityTable to close the modal
+  // this.$emit('close', this.closeModal);
 },
 
 };
 </script>
+<style>
+.container {
+  position: relative;
+}
+</style>

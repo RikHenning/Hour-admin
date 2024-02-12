@@ -33,10 +33,6 @@
   </template>
   
   <script>
-import mitt from 'mitt'; 
-
-const emitter = mitt();
-
 export default {
   name: 'availabilityTable',
   data() {
@@ -72,9 +68,9 @@ export default {
       const employeeDataString = JSON.stringify(employeeData);
       localStorage.setItem(`employee-${id}`, employeeDataString);
       
-      emitter.emit('employee-created', employeeData);
+      // emitter.emit('employee-created', employeeData);
       
-      emitter.emit('close');
+      // emitter.emit('close');
     },
   },
 };
