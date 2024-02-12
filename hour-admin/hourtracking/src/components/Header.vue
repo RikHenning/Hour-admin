@@ -1,13 +1,13 @@
 <template>
-  <header class="nav-bar" ref="header">
-    <nav class="navbar">
-      <div class="nav headerContainer" ref="container">
-        <div class="nav-item image-container">
+  <header>
+    <nav class="navbar fixed-top navbar-light bg-light">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+        <div class="image-container">
           <router-link to="/homePage">
-            <img :src="backgroundImage" alt="Panda" class="nav-link clickable-image" />
+            <img :src="backgroundImage" alt="Panda" class="clickable-image" />
           </router-link>
         </div>
-        <div class="nav-item router-links">
+        <div class="router-links">
           <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
           <router-link to="/invoicingPage" class="router-link">Go to Invoice Page</router-link>
           <router-link to="/employee" class="router-link">Go to Employee Page</router-link>
@@ -17,6 +17,7 @@
     </nav>
   </header>
 </template>
+
 
 
 <script>
@@ -36,7 +37,7 @@ export default {
 </script>
 
 <style scoped>
-.headerContainer {
+header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -79,7 +80,7 @@ export default {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .headerContainer {
+  header {
     flex-direction: column;
     align-items: flex-start;
   }

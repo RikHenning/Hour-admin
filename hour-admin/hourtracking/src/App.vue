@@ -1,9 +1,7 @@
 <template>
   <div>
-    <NavBar />
-    <div data-bs-spy="scroll" class="activePage" id="scrollspy">
-      <RouterView></RouterView>
-    </div>
+    <NavBar/>
+        <RouterView class="activePage"></RouterView>
     <!-- <HomePage /> -->
   </div>
 </template>
@@ -18,24 +16,14 @@ export default {
   components: {
     NavBar,
     // HomePage
-    RouterView
-},
-
+    RouterView,
+  },
 };
 </script>
 
 <style>
 .activePage {
-  position: relative;
+  margin-top: 88px;
 }
 
-.nav-bar {
-  margin-bottom: 100px;
-  width: 100%;
-}
-
-.router-view {
-  margin-top: 100px;
-  transition: padding-top 0.6s ease;
-}
 </style>
