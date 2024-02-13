@@ -7,17 +7,27 @@
             <img :src="backgroundImage" alt="Panda" class="clickable-image" />
           </router-link>
         </div>
-        <div class="router-links">
+        <div class="router-links d-none d-lg-flex">
           <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
           <router-link to="/invoicingPage" class="router-link">Go to Invoice Page</router-link>
           <router-link to="/employee" class="router-link">Go to Employee Page</router-link>
           <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
         </div>
+        <div class="dropdown d-lg-none"> 
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <router-link to="/homePage" class="dropdown-item">Go to Home Page</router-link>
+            <router-link to="/invoicingPage" class="dropdown-item">Go to Invoice Page</router-link>
+            <router-link to="/employee" class="dropdown-item">Go to Employee Page</router-link>
+            <router-link to="/planning" class="dropdown-item">Go to Planning Page</router-link>
+          </div>
+        </div>
       </div>
     </nav>
   </header>
 </template>
-
 
 
 <script>
@@ -37,6 +47,12 @@ export default {
 </script>
 
 <style scoped>
+@media (min-width: 1230px) {
+  .router-links {
+    display: none; /* Hide the router links */
+  }
+}
+
 header {
   display: flex;
   flex-direction: row;
@@ -78,16 +94,4 @@ header {
   color: #fff;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .image-container img {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-}
 </style>

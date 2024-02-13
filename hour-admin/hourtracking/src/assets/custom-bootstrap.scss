@@ -1,0 +1,17 @@
+
+$custom-breakpoints: (
+  small: 576px,
+  medium: 768px,
+  large: 1230px,
+  extra-large: 1300px,
+);
+
+@media (max-width: #{$custom-breakpoints['large']}) {
+  .router-links {
+    display: none;
+  }
+
+  .dropdown {
+    display: block; 
+  }
+}
