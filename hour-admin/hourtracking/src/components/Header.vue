@@ -14,14 +14,14 @@
           <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
         </div>
         <div class="dropdown d-lg-none"> 
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" @click="toggleDropdown" aria-haspopup="true" :aria-expanded="isDropdownOpen">
             Menu
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <router-link to="/homePage" class="dropdown-item">Go to Home Page</router-link>
-            <router-link to="/invoicingPage" class="dropdown-item">Go to Invoice Page</router-link>
-            <router-link to="/employee" class="dropdown-item">Go to Employee Page</router-link>
-            <router-link to="/planning" class="dropdown-item">Go to Planning Page</router-link>
+          <div class="dropdown-menu custom-dropdown dropleft" :class="{ show: isDropdownOpen }" aria-labelledby="dropdownMenuButton">
+            <router-link to="/homePage" class="dropdown-item" @click="closeDropdown">Go to Home Page</router-link>
+            <router-link to="/invoicingPage" class="dropdown-item" @click="closeDropdown">Go to Invoice Page</router-link>
+            <router-link to="/employee" class="dropdown-item" @click="closeDropdown">Go to Employee Page</router-link>
+            <router-link to="/planning" class="dropdown-item" @click="closeDropdown">Go to Planning Page</router-link>
           </div>
         </div>
       </div>
@@ -41,7 +41,16 @@ export default {
   data() {
     return {
       backgroundImage: BackgroundPanda,
+      isDropdownOpen: false
     };
+  },
+  methods: {
+    toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    },
+    closeDropdown() {
+      this.isDropdownOpen = false;
+    }
   }
 };
 </script>
@@ -93,4 +102,23 @@ header {
   color: #fff;
 }
 
+.custom-dropdown.dropdown-menu {
+  right: auto;
+}
+
+.btn {
+  margin: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  background-color: #9acca4;
+  border: 1px solid #72a482;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #72a482;
+  color: #fff;
+}
 </style>
