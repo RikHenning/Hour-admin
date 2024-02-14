@@ -47,12 +47,11 @@ export default {
 </script>
 
 <style scoped>
-@media (min-width: 1230px) {
+@media (max-width: 1230px) {
   .router-links {
-    display: none; /* Hide the router links */
+    display: none;
   }
 }
-
 header {
   display: flex;
   flex-direction: row;
