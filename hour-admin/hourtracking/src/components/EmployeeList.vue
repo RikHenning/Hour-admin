@@ -27,30 +27,24 @@ export default {
   },
   methods: {
     loadEmployeesFromLocalStorage() {
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key && key.startsWith("employee-")) {
-          const employeeDataString = localStorage.getItem(key);
-          if (employeeDataString) {
-            const employeeData = JSON.parse(employeeDataString);
-            this.employees.push(employeeData);
-          }
+      try {
+        const employeesString = localStorage.getItem('employees');
+        if (employeesString) {
+          this.employees = JSON.parse(employeesString);
         }
+      } catch (error) {
+        console.error('Error loading employees from Local Storage:', error);
       }
     },
-    removeEmployee(employeeId) {
-      localStorage.removeItem(`employee-${employeeId}`);
-      this.employees = this.employees.filter(employee => employee.id !== employeeId);
-    },
     handleStorageChange(event) {
-      if (event.key && event.key.startsWith("employee-")) {
+      if (event.key === 'employees') {
         this.loadEmployeesFromLocalStorage();
-        // this.$emit('local-storage-updated');
       }
     },
   },
 };
 </script>
+
 
 <style scoped>
 

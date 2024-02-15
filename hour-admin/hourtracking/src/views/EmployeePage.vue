@@ -36,17 +36,11 @@ export default {
   },
   methods: {
     loadEmployeesFromLocalStorage() {
-      try {
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          if (key && key.startsWith("employee-")) {
-            const employeeDataString = localStorage.getItem(key);
-            if (employeeDataString) {
-              const employeeData = JSON.parse(employeeDataString);
-              this.employees.push(employeeData);
-            }
-          }
-        }
+    try {
+      const employeesString = localStorage.getItem('employees');
+      if (employeesString) {
+        this.employees = JSON.parse(employeesString);
+      }
       } catch (error) {
         console.error('Error loading employees from Local Storage:', error);
       }
@@ -61,25 +55,11 @@ export default {
     async closeModal() {
       this.isModalOpen = false;
     },
-    handleEmployeeCreated(employeeData) {
-      this.employees.push(employeeData);
-    },
-  },
-  watch: {
-    employees: {
-      handler(newEmployees) {
-        // Do something when employees array changes
-        console.log('Employees changed:', newEmployees);
-      },
-      deep: true,
-    },
   },
   created() {
-  // Listen for the 'employee-created' event emitted by AvailabilityTable
-  // this.$emit('employee-created', this.handleEmployeeCreated);
-  // // Listen for the 'close' event emitted by AvailabilityTable to close the modal
-  // this.$emit('close', this.closeModal);
-},
+  this.$emit('employee-created', this.loadEmployeesFromLocalStorage);
+  this.$emit('close', this.closeModal);
+  },
 
 };
 </script>

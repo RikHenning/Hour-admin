@@ -7,17 +7,17 @@
             <img :src="backgroundImage" alt="Panda" class="clickable-image" />
           </router-link>
         </div>
-        <div class="router-links d-none d-lg-flex">
+        <div class="router-links d-none d-xl-flex">
           <router-link to="/homePage" class="router-link">Go to Home Page</router-link>
           <router-link to="/invoicingPage" class="router-link">Go to Invoice Page</router-link>
           <router-link to="/employee" class="router-link">Go to Employee Page</router-link>
           <router-link to="/planning" class="router-link">Go to Planning Page</router-link>
         </div>
-        <div class="dropdown d-lg-none"> 
+        <div class="dropdown d-xl-none"> 
           <button class="btn btn-secondary dropdown-toggle" type="button" @click="toggleDropdown" aria-haspopup="true" :aria-expanded="isDropdownOpen">
             Menu
           </button>
-          <div class="dropdown-menu custom-dropdown dropleft" :class="{ show: isDropdownOpen }" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-menu dropdown-menu-right" :class="{ show: isDropdownOpen }" aria-labelledby="dropdownMenuButton">
             <router-link to="/homePage" class="dropdown-item" @click="closeDropdown">Go to Home Page</router-link>
             <router-link to="/invoicingPage" class="dropdown-item" @click="closeDropdown">Go to Invoice Page</router-link>
             <router-link to="/employee" class="dropdown-item" @click="closeDropdown">Go to Employee Page</router-link>
@@ -102,9 +102,12 @@ header {
   color: #fff;
 }
 
-.custom-dropdown.dropdown-menu {
-  right: auto;
+.dropdown-menu {
+  left: auto;
+  right: 10px; /* Adjust the value as needed */
 }
+
+
 
 .btn {
   margin: 10px;

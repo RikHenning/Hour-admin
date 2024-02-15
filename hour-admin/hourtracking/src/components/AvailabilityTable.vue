@@ -33,12 +33,12 @@
   </template>
   
   <script>
+import { useRouter } from 'vue-router';
+
 export default {
   name: 'availabilityTable',
   data() {
     return {
-      selectedDate: new Date().toISOString().substr(0, 10),
-      week: "",
       days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       times: {
         Mon: { start: "07:30", finish: "18:30" },
@@ -64,13 +64,17 @@ export default {
         totalHours: this.totalHours,
         times: { ...this.times },
       };
-
-      const employeeDataString = JSON.stringify(employeeData);
-      localStorage.setItem(`employee-${id}`, employeeDataString);
-      
-      // emitter.emit('employee-created', employeeData);
-      
-      // emitter.emit('close');
+      let employees = JSON.parse(localStorage.getItem('employees')) || [];
+      employees.push(employeeData);
+      console.log(employees);
+      localStorage.setItem('employees', JSON.stringify(employees));
+      this.$emit('employee-created');    
+      this.$emit('close');
+      // this.reloadPage(); 
+    },
+    reloadPage() {
+      const router = useRouter();
+      router.reload();
     },
   },
 };

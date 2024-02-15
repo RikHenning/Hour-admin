@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import InvoicingPage from '../views/InvoicingPage.vue'
 import HomePage from '../views/HomePage.vue'
 import EmployeePage from '../views/EmployeePage.vue'
-import PlanningPage from '../views/PlanningPage.vue'
+import PlanningPage from '../views/PlanningPage.vue';
 
 const routes = [
   {
@@ -16,20 +16,20 @@ const routes = [
     component: InvoicingPage
   },
   {
-      path: '/employee',
-      name: 'EmployeePage',
-      component: EmployeePage
+    path: '/employee',
+    name: 'EmployeePage',
+    component: EmployeePage
   },
   {
-      path: '/planning',
-      name: 'PlanningPage',
-      component: PlanningPage
+    path: '/planning',
+    name: 'PlanningPage',
+    component: PlanningPage
   }
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL), 
-    routes
+  history: createWebHistory(process.env.BASE_URL), 
+  routes
 })
 
-export default router
+export default router;
