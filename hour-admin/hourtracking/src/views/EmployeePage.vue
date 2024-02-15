@@ -55,10 +55,13 @@ export default {
     async closeModal() {
       this.isModalOpen = false;
     },
+    reloadPage() {
+      window.location.reload();
+    },
   },
   created() {
   this.$emit('employee-created', this.loadEmployeesFromLocalStorage);
-  this.$emit('close', this.closeModal);
+  this.$emit('close', this.closeModal, this.reloadPage);
   },
 
 };

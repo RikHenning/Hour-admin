@@ -33,8 +33,6 @@
   </template>
   
   <script>
-import { useRouter } from 'vue-router';
-
 export default {
   name: 'availabilityTable',
   data() {
@@ -70,11 +68,7 @@ export default {
       localStorage.setItem('employees', JSON.stringify(employees));
       this.$emit('employee-created');    
       this.$emit('close');
-      // this.reloadPage(); 
-    },
-    reloadPage() {
-      const router = useRouter();
-      router.reload();
+      window.location.reload();
     },
   },
 };
