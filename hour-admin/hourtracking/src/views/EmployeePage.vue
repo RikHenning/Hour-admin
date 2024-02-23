@@ -11,7 +11,7 @@
       <AvailabilityTable @close="closeModal" />
     </vue-final-modal>
 
-    <EmployeeList :employees="employees" />
+    <EmployeeList :employees="employees" @remove="handleRemoveEmployee" />
   </div>
 </template>
 
@@ -45,9 +45,10 @@ export default {
         console.error('Error loading employees from Local Storage:', error);
       }
     },
-    removeEmployee(employeeId) {
-      localStorage.removeItem(`employee-${employeeId}`);
+    handleRemoveEmployee(employeeId) {
       this.employees = this.employees.filter(employee => employee.id !== employeeId);
+      localStorage.setItem('employees', JSON.stringify(this.employees));
+      window.location.reload();
     },
     toggleModal() {
       this.isModalOpen = !this.isModalOpen;

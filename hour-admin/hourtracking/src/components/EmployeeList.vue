@@ -26,33 +26,13 @@
 <script>
 export default {
   name: 'EmployeeList',
-  data() {
-    return {
-      employees: [],
-    };
+  props: {
+    employees: Array,
   },
-  mounted() {
-    this.loadEmployeesFromLocalStorage();
-    window.addEventListener('storage', this.handleStorageChange);
-  },
-  beforeUnmount() {
-    window.removeEventListener('storage', this.handleStorageChange);
-  },
+  emits: ['remove'],
   methods: {
-    loadEmployeesFromLocalStorage() {
-      try {
-        const employeesString = localStorage.getItem('employees');
-        if (employeesString) {
-          this.employees = JSON.parse(employeesString);
-        }
-      } catch (error) {
-        console.error('Error loading employees from Local Storage:', error);
-      }
-    },
-    handleStorageChange(event) {
-      if (event.key === 'employees') {
-        this.loadEmployeesFromLocalStorage();
-      }
+    removeEmployee(employeeId) {
+      this.$emit('remove', employeeId);
     },
   },
 };
@@ -67,6 +47,7 @@ export default {
   border-style: solid;
   border-top-left-radius: 10px; /* Adjust the value to control the roundness of the corners */
   border-top-right-radius: 10px;
+  padding-bottom: 15px;
 }
 
 td {
