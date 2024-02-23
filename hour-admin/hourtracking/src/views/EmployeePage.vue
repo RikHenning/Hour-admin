@@ -8,20 +8,22 @@
     </button>
 
     <vue-final-modal v-if="isModalOpen" @close="closeModal">
-      <AvailabilityTable @close="closeModal" />
+      <AvailabilityTable @close="closeModal"/>
     </vue-final-modal>
 
-    <EmployeeList :employees="employees" />
+    <EmployeeList :employees="employees" @remove="handleRemoveEmployee" />
   </div>
 </template>
 
 <script>
 import AvailabilityTable from '@/components/AvailabilityTable.vue';
 import EmployeeList from "@/components/EmployeeList.vue";
+import {VueFinalModal} from "vue-final-modal";
 
 export default {
   name: 'EmployeePage',
-  components: { 
+  components: {
+    VueFinalModal,
     AvailabilityTable,
     EmployeeList,
   },
@@ -36,14 +38,18 @@ export default {
   },
   methods: {
     loadEmployeesFromLocalStorage() {
-    try {
-      const employeesString = localStorage.getItem('employees');
-      if (employeesString) {
-        this.employees = JSON.parse(employeesString);
-      }
+      try {
+        const employeesString = localStorage.getItem('employees');
+        if (employeesString) {
+          this.employees = JSON.parse(employeesString);
+        }
       } catch (error) {
         console.error('Error loading employees from Local Storage:', error);
       }
+    },
+    handleRemoveEmployee(employeeId) {
+      this.employees = this.employees.filter(employee => employee.id !== employeeId);
+      localStorage.setItem('employees', JSON.stringify(this.employees));
     },
     removeEmployee(employeeId) {
       localStorage.removeItem(`employee-${employeeId}`);
@@ -60,12 +66,13 @@ export default {
     },
   },
   created() {
-  this.$emit('employee-created', this.loadEmployeesFromLocalStorage);
-  this.$emit('close', this.closeModal, this.reloadPage);
+    this.$emit('employee-created', this.loadEmployeesFromLocalStorage);
+    this.$emit('close', this.closeModal, this.reloadPage);
   },
-
 };
 </script>
+
+
 <style>
 .container {
   position: relative;

@@ -3,56 +3,36 @@
   <div class="container">
     <table class="custom-table">
       <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Total Hours</th>
-          <th scope="col">Action</th>
-        </tr>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Total Hours</th>
+        <th scope="col">Action</th>
+      </tr>
       </thead>
       <tbody>
-        <tr v-for="employee in employees" :key="employee.id">
-          <td>{{ employee.firstName }} {{ employee.lastName }}</td>
-          <td>{{ employee.totalHours }}</td>
-          <td>
-            <button @click="removeEmployee(employee.id)" class="btn btn-danger">Remove</button>
-          </td>
-        </tr>
+      <tr v-for="employee in employees" :key="employee.id">
+        <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+        <td>{{ employee.totalHours }}</td>
+        <td>
+          <button @click="removeEmployee(employee.id)" class="btn btn-danger">Remove</button>
+        </td>
+      </tr>
       </tbody>
     </table>
   </div>
 </template>
 
-
 <script>
 export default {
   name: 'EmployeeList',
-  data() {
-    return {
-      employees: [],
-    };
+  props: {
+    employees: Array,
   },
-  mounted() {
-    this.loadEmployeesFromLocalStorage();
-    window.addEventListener('storage', this.handleStorageChange);
-  },
-  beforeUnmount() {
-    window.removeEventListener('storage', this.handleStorageChange);
-  },
+  emits: ['remove'],
   methods: {
-    loadEmployeesFromLocalStorage() {
-      try {
-        const employeesString = localStorage.getItem('employees');
-        if (employeesString) {
-          this.employees = JSON.parse(employeesString);
-        }
-      } catch (error) {
-        console.error('Error loading employees from Local Storage:', error);
-      }
-    },
-    handleStorageChange(event) {
-      if (event.key === 'employees') {
-        this.loadEmployeesFromLocalStorage();
-      }
+    removeEmployee(employeeId) {
+      // Emit an event to the parent component to handle the employee removal
+      this.$emit('remove', employeeId);
     },
   },
 };
