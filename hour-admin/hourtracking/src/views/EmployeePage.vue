@@ -11,21 +11,16 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Employee's Details</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <AvailabilityTable @close="toggleModal" />
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
         </div>
       </div>
     </div>
-    
-    <EmployeeList :employees="employees" @remove="handleRemoveEmployee" />
+    <EmployeeList :employees="employees" @remove="handleRemoveEmployee" @edit="handleEditEmployee"/>
   </div>
 </template>
 
@@ -43,6 +38,7 @@ export default {
     return {
       isModalOpen: false,
       employees: [],
+      employeeToEdit: Object,
     };
   },
   mounted() {
@@ -50,11 +46,11 @@ export default {
   },
   methods: {
     loadEmployeesFromLocalStorage() {
-    try {
-      const employeesString = localStorage.getItem('employees');
-      if (employeesString) {
-        this.employees = JSON.parse(employeesString);
-      }
+      try {
+        const employeesString = localStorage.getItem('employees');
+        if (employeesString) {
+          this.employees = JSON.parse(employeesString);
+        }
       } catch (error) {
         console.error('Error loading employees from Local Storage:', error);
       }
@@ -67,18 +63,22 @@ export default {
     toggleModal() {
       this.isModalOpen = !this.isModalOpen;
     },
+    handleEditEmployee(employee) {
+      this.toggleModal();
+      this.employeeToEdit = employee;
+    },
     reloadPage() {
       window.location.reload();
     },
   },
   created() {
-  this.$emit('employee-created', this.loadEmployeesFromLocalStorage);
-  this.$emit('close', this.closeModal, this.reloadPage);
+    this.$emit('employee-created', this.loadEmployeesFromLocalStorage);
+    this.$emit('close', this.closeModal, this.reloadPage);
   },
-
 };
 </script>
-<style  scoped>
+
+<style scoped>
 .container {
   position: relative;
 }

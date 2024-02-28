@@ -35,6 +35,9 @@
   <script>
 export default {
   name: 'availabilityTable',
+  props: {
+    employeeToEdit: Object,
+  },
   data() {
     return {
       days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -51,6 +54,19 @@ export default {
       firstName: "",
       lastName: "",
     };
+  },
+  watch: {
+    employeeToEdit: {
+      handler(newVal) {
+        if (newVal) {
+          this.firstName = newVal.firstName;
+          this.lastName = newVal.lastName;
+          this.totalHours = newVal.totalHours;
+          this.times = { ...newVal.times };
+        }
+      },
+      immediate: true,
+    },
   },
   methods: {
     submitAndCloseModal() {

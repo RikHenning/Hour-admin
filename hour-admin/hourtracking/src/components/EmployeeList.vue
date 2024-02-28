@@ -14,7 +14,8 @@
           <td>{{ employee.firstName }} {{ employee.lastName }}</td>
           <td>{{ employee.totalHours }}</td>
           <td>
-            <button @click="removeEmployee(employee.id)" class="btn btn-danger">Remove</button>
+            <button @click="removeEmployee(employee.id)" class="btn btn-danger removeButton">Remove</button>
+            <button @click="editEmployee(employee.id)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
           </td>
         </tr>
       </tbody>
@@ -22,17 +23,34 @@
   </div>
 </template>
 
-
 <script>
 export default {
   name: 'EmployeeList',
   props: {
     employees: Array,
+    employeeToEdit: Object,
   },
-  emits: ['remove'],
+  emits: ['remove', 'edit'],
   methods: {
     removeEmployee(employeeId) {
       this.$emit('remove', employeeId);
+    },
+    editEmployee(employeeId) {
+      const employeeToEdit = this.employees.find(employee => employee.id === employeeId);
+      this.$emit('edit', employeeToEdit);
+    },
+  },
+  watch: { 
+    employeeToEdit: {
+      handler(newVal) {
+        if (newVal) {
+          this.firstName = newVal.firstName;
+          this.lastName = newVal.lastName;
+          this.totalHours = newVal.totalHours;
+          this.times = { ...newVal.times };
+        }
+      },
+      immediate: true,
     },
   },
 };
@@ -45,7 +63,7 @@ export default {
   border-width: 3px;
   border-color: black;
   border-style: solid;
-  border-top-left-radius: 10px; /* Adjust the value to control the roundness of the corners */
+  border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding-bottom: 15px;
 }
@@ -63,5 +81,8 @@ td {
   display: flex;
   justify-content: center; /* Horizontally center the content */
   align-items: center; /* Vertically center the content */
+}
+.removeButton {
+  margin-right: 6px;
 }
 </style>
