@@ -36,6 +36,7 @@
 export default {
   name: 'availabilityTable',
   props: {
+    mode: String,
     employeeToEdit: Object,
   },
   data() {

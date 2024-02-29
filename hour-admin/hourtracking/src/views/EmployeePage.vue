@@ -3,19 +3,33 @@
     <h1>Welcome to Panda Movers!</h1>
     <p>This is the Employee Page.</p>
 
-    <button type="button" class="btn btn-primary button-styling" data-bs-toggle="modal" data-bs-target="#exampleModal"  @click="toggleModal" style="font-size: medium;">
+    <button type="button" class="btn btn-primary button-styling" data-bs-toggle="modal" data-bs-target="#createModal"  @click="toggleModal" style="font-size: medium;">
       {{ isModalOpen ? 'Close Availability Table Modal' : 'Open Availability Table Modal' }}
     </button>
     
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Employee's Details</h5>
+            <h5 class="modal-title" id="createModalLabel">Employee's Details</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <AvailabilityTable @close="toggleModal" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Employee's Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <EditEmployee v-if="isEditModalOpen" :employee="employeeToEdit" @save="handleSaveEdit" />
           </div>
         </div>
       </div>
@@ -27,18 +41,22 @@
 <script>
 import AvailabilityTable from '@/components/AvailabilityTable.vue';
 import EmployeeList from "@/components/EmployeeList.vue";
+import EditEmployee from '@/components/EditEmployee.vue';
+
 
 export default {
   name: 'EmployeePage',
   components: { 
     AvailabilityTable,
     EmployeeList,
+    EditEmployee,
   },
   data() {
     return {
       isModalOpen: false,
       employees: [],
       employeeToEdit: Object,
+      isEditModalOpen: false,
     };
   },
   mounted() {
@@ -64,8 +82,8 @@ export default {
       this.isModalOpen = !this.isModalOpen;
     },
     handleEditEmployee(employee) {
-      this.toggleModal();
       this.employeeToEdit = employee;
+      console.log("Employee to edit:", this.employeeToEdit);
     },
     reloadPage() {
       window.location.reload();
@@ -74,6 +92,7 @@ export default {
   created() {
     this.$emit('employee-created', this.loadEmployeesFromLocalStorage);
     this.$emit('close', this.closeModal, this.reloadPage);
+    this.$emit('edit', this.employeeToEdit);
   },
 };
 </script>
