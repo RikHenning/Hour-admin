@@ -25,6 +25,7 @@
                     <input type="time" :id="'editStartTime_' + day" v-model="editedEmployee.times[day].start" step="900" />
                     <label>Finish Time:</label>
                     <input type="time" :id="'editFinishTime_' + day" v-model="editedEmployee.times[day].finish" step="900" />
+                    {{ console.log(day) }}
                 </div>
             </div>
         </div>
@@ -44,12 +45,24 @@ export default {
     data() {
         return {
             days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-            editedEmployee: {}
+            editedEmployee: {
+                firstName: '',
+                lastName: '',
+                totalHours: 0,
+                times: {}
+            }
         };
     },
     mounted() {
         this.editedEmployee = { ...this.employee };
-        console.log(this.employee)
+        console.log(this.employee);
+        console.log(this.editedEmployee.times);
+        this.days.forEach(day => {
+            console.log(day)
+            if (!this.editedEmployee.times[day]) {
+                this.editedEmployee.times[day] = { start: "", finish: "" };
+            }
+        });
     },
     methods: {
         saveChanges() {
@@ -57,6 +70,7 @@ export default {
         }
     }
 };
+
 </script>
 
 

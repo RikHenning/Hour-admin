@@ -83,6 +83,7 @@ export default {
     },
     handleEditEmployee(employee) {
       this.employeeToEdit = employee;
+      this.isEditModalOpen = true;
       console.log("Employee to edit:", this.employeeToEdit);
     },
     reloadPage() {

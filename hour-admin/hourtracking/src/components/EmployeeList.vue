@@ -40,7 +40,6 @@ export default {
     },
     handleEditEmployee(employee) {
       this.$emit('edit', employee)
-      console.log(employee)
     },
   },
 };
